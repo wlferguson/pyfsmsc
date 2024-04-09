@@ -6,6 +6,5 @@ setup(name='pyfsmsc',
       maintainer='William Ferguson',
       maintainer_email='wferguso@andrew.cmu.edu',
       license='MIT',
-      packages=['RDF','FT_sQ','sQ','ShapeMetrics'],
       long_description='''This package
       includes utilties to characterize the structures of simulated fluids and soft materials.''')
