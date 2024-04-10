@@ -5,6 +5,8 @@ import numpy as np
 from numba import jit
 import pandas as pd
 from scipy.signal import savgol_filter
+import netCDF4 as nc
+from netCDF4 import Dataset
 
 
 def hello(name):
@@ -83,3 +85,24 @@ def computeSq(A, B):
         sumInit1 = 0
         sumInit2 = 0
     return ds3
+
+
+def loadNCAtoms(fn, frame):
+    """Convert netCDF4 coordinates into csv."""
+    ds = nc.Dataset(fn)
+
+    frame = frame;
+
+    ds['coordinates'][frame].shape
+
+    posType = np.zeros((ds['coordinates'][frame].shape[0],ds['coordinates'][frame].shape[1]+1))
+
+    for i in range(0,160000):
+        posType[i][0] = ds['coordinates'][frame][i][0];
+        posType[i][1] = ds['coordinates'][frame][i][1];
+        posType[i][2] = ds['coordinates'][frame][i][2];
+        posType[i][3] = ds['atom_types'][frame,i]
+    
+    df = pd.DataFrame(posType)
+    
+    return df
