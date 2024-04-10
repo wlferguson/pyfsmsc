@@ -4,6 +4,12 @@ Welcome to pyfsmsc! This package includes common and novel characterization tech
 
 # Installation 
 
+First:
 ```
-pip install pyfsmsc
+git clone https://github.com/wlferguson/pyfsmsc
+```
+Next:
+```
+cd pyfsmsc
+pip install .
 ```
