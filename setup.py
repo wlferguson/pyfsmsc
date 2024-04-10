@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pyfsmsc',
-      version='0.0.2',
+      version='0.0.3',
       description='A fluids and soft materials structure characterization package',
       maintainer='William Ferguson',
       maintainer_email='wferguso@andrew.cmu.edu',
