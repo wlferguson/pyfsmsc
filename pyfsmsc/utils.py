@@ -24,7 +24,7 @@ def RDF_to_SQ(r, gr, density, qmin, qmax, nqs):
 
 
 
-def Coords_to_SQ(nmax, L, coords):
+def Coords_to_SQ(nmax, L, df):
     nk = nmax
     kCard = (nk)**3
     ds1 = np.zeros((kCard,3))
