@@ -9,7 +9,7 @@ from scipy.signal import savgol_filter
 
 def hello(name):
     """Welcomes user to the package."""
-    print(f"Welcome: {name}")
+    print(f"Hello: {name}")
 
 
 def RDF_to_SQ(r, gr, density, qmin, qmax, nqs):
@@ -25,6 +25,21 @@ def RDF_to_SQ(r, gr, density, qmin, qmax, nqs):
             s += dr * r * np.sin(q * r) * RDFs[rind]
             Sqs[qind] = 1 + 4 * np.pi * density * s / q
     return qs, Sqs
+
+
+def SQ_to_RDF(q, sq, density, rmin, rmax, nrs):
+    """Convert scattering data into radial distribution data."""
+    qs = q
+    dq = q[1] - q[0]
+    SQs = sq - 1
+    rs = np.linspace(rmin, rmax, num=nrs)
+    Grs = np.zeros(rs.shape[0])
+    for rind, r in enumerate(rs):
+        g = 0
+        for qind, q in enumerate(qs):
+            g += dq * q * np.sin(q * r) * SQs[qind]
+            Grs[rind] = 1 + 1/((np.pi)**2*density*2)  * g / r
+    return rs, Grs
 
 
 def Coords_to_SQ(nmax, L, df):
