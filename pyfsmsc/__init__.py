@@ -10,3 +10,5 @@ from .reciprocal import reciprocalgreet
 from .reciprocal import SQ_to_RDF
 from .reciprocal import Coords_to_SQ
 from .reciprocal import waveInteractions
+
+from .shapemetrics import shapeMetrics
