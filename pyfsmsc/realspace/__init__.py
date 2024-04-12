@@ -1,2 +1,3 @@
+"""Import utilities from real space submodule."""
 
-from pyfsmsc.realspace.real import RDF_to_SQ
+from pyfsmsc.realspace.rdf2sq import RDF_to_SQ

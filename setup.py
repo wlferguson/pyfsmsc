@@ -8,6 +8,7 @@ setup(
     maintainer_email="wferguso@andrew.cmu.edu",
     license="MIT",
     packages=["pyfsmsc",
+              'pyfsmsc.helpfunctions',
               'pyfsmsc.reciprocalspace',
               'pyfsmsc.realspace',
               'pyfsmsc.shapemetrics'],

@@ -4,7 +4,7 @@ import pytest
 import pyfsmsc
 import numpy as np
 import scipy.interpolate as interp
-from pyfsmsc.realspace.real import RDF_to_SQ
+from pyfsmsc.realspace.rdf2sq import RDF_to_SQ
 import sklearn
 from sklearn.metrics import r2_score
 import pandas as pd

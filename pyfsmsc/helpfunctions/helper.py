@@ -34,11 +34,8 @@ def loadNCAtoms(fn, frame) -> pd.DataFrame:
         (ds["coordinates"][frame].shape[0], ds["coordinates"][frame].shape[1] + 1)
     )
 
-    for i in range(0, 160000):
-        posType[i][0] = ds["coordinates"][frame][i][0]
-        posType[i][1] = ds["coordinates"][frame][i][1]
-        posType[i][2] = ds["coordinates"][frame][i][2]
-        posType[i][3] = ds["atom_types"][frame, i]
+    posType[:, 0:3] = ds["coordinates"][frame]
+    posType[:, 3] = ds["atom_types"][frame]
 
     df = pd.DataFrame(posType)
 

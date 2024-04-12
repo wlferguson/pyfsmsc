@@ -3,7 +3,7 @@
 import pytest
 import pyfsmsc
 import numpy as np
-from pyfsmsc.shapemetrics.shapemetrics import shapeMetrics
+from pyfsmsc.shapemetrics.shapeMetrics import shapeMetrics
 import scipy.interpolate as interp
 import sklearn
 from sklearn.metrics import r2_score

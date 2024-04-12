@@ -3,12 +3,13 @@
 import pytest
 import pyfsmsc
 import numpy as np
-from pyfsmsc.reciprocalspace.reciprocal import SQ_to_RDF
+from pyfsmsc.reciprocalspace.sq2rdf import SQ_to_RDF
 import scipy.interpolate as interp
 import sklearn
 from sklearn.metrics import r2_score
 import pandas as pd
 import matplotlib.pyplot as plt
+
 
 def test_SQ_to_RDF():
     """Test conversion of real space structural information into reciprocal space data.
