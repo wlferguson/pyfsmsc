@@ -1,5 +1,9 @@
 # pyfsmsc 
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
+
 Welcome to a python based fluids and soft materials characterization package, pyfsmsc! This package includes common and custom characterization techniques to analyze structures of fluids and soft materials from molecular dynamics (MD) simulations. 
 
 # Installation 
