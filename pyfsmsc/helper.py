@@ -9,21 +9,6 @@ import netCDF4 as nc
 from netCDF4 import Dataset
 
 
-def helpergreet(name) -> None:
-    """Welcomes user to the real space folder.
-
-    Parameters
-    ----------
-    name : str
-        The user's name.
-
-    Returns
-    -------
-    None
-    """
-    print(f"Welcome to the helper utilties: {name}")
-
-
 def loadNCAtoms(fn, frame) -> pd.DataFrame:
     """Convert netcdf4 file into pandas dataframe for ease of manipulation.
 

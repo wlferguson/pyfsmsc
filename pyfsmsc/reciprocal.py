@@ -6,21 +6,6 @@ import pandas as pd
 from scipy.signal import savgol_filter
 
 
-def reciprocalgreet(name) -> None:
-    """Welcomes user to the reciprocal space folder.
-
-    Parameters
-    ----------
-    name : str
-        The user's name.
-
-    Returns
-    -------
-    None
-    """
-    print(f"Welcome to the reciprocal space utilties: {name}")
-
-
 def SQ_to_RDF(q, sq, density, rmin, rmax, nrs) -> tuple:
     """Convert recriprocal space scattering data into real space radial distribution data.
 

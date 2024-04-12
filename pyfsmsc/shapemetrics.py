@@ -184,8 +184,6 @@ def shapeMetrics(fn) -> pd.DataFrame:
     eig2 = data.iloc[data["clusterID"].drop_duplicates().index]["l2"]
     eig3 = data.iloc[data["clusterID"].drop_duplicates().index]["l3"]
 
-    N1 = data.iloc[data["clusterID"].drop_duplicates().index]["clusterSize"]
-
     b2 = eig3 - 0.5 * (eig1 + eig2)
     c2 = eig2 - eig1
     k2 = (b2**2 + 0.75 * c2**2) / (eig1 + eig2 + eig3) ** 2
