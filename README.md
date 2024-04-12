@@ -1,6 +1,7 @@
 # pyfsmsc 
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)   [![HitCount](https://hits.dwyl.com/wlferguson/pyfsmsc.svg?style=flat-square&show=unique)](http://hits.dwyl.com/wlferguson/pyfsmsc)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)   [![HitCount](https://hits.dwyl.com/wlferguson/pyfsmsc.svg?style=flat-square&show=unique)](http://hits.dwyl.com/wlferguson/pyfsmsc) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 
 
 
