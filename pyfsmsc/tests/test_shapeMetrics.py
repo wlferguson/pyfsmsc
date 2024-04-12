@@ -3,7 +3,7 @@
 import pytest
 import pyfsmsc
 import numpy as np
-import pyfsmsc.reciprocal
+from pyfsmsc.shapemetrics.shapemetrics import shapeMetrics
 import scipy.interpolate as interp
 import sklearn
 from sklearn.metrics import r2_score
@@ -24,7 +24,7 @@ def test_shapeMetrics():
     """
     fn = "examples/ionomer"
 
-    microstructures = pyfsmsc.shapeMetrics(fn)
+    microstructures = shapeMetrics(fn)
     OVITOControl = pd.read_csv("examples/OVITOCluster.csv", header=None)
 
     # Determine if both these techniques find the same number of microstructures.

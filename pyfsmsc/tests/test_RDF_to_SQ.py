@@ -3,15 +3,15 @@
 import pytest
 import pyfsmsc
 import numpy as np
-import pyfsmsc.reciprocal
 import scipy.interpolate as interp
+from pyfsmsc.realspace.real import RDF_to_SQ
 import sklearn
 from sklearn.metrics import r2_score
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def test_SQ_to_RDF():
+def test_RDF_to_SQ():
     """Test conversion of reciprocal space structural information into real space data.
 
     Parameters
@@ -36,7 +36,7 @@ def test_SQ_to_RDF():
     qmax = 8
     nqs = 1000
 
-    q, Sq = pyfsmsc.RDF_to_SQ(r, gr, density, qmin, qmax, nqs)
+    q, Sq = RDF_to_SQ(r, gr, density, qmin, qmax, nqs)
 
     control = pd.read_csv("examples/LikosSq.csv")
 
