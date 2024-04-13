@@ -28,20 +28,22 @@ def shapeMetrics(fn) -> pd.DataFrame:
 
     # frame = frame
 
-    # Step 2) Generating Data Structure with Cluster ID and Atomic Coordinates
-    vals = atoms = np.arange(0, 0)
+    ds = nc.Dataset(fn)
 
-    for i in range(0, (ds["identifier"]).shape[1]):
-        if ds["c_clst"][0, i] != 0:
-            vals = np.append(vals, ds["c_clst"][0, i])
-            atoms = np.append(atoms, i)
+    # Step 2) Generating Data Structure with Cluster ID and Atomic Coordinates
+
+    mask = ds["c_clst"][0,:] != 0
+    vals = ds["c_clst"][0,mask]
+    atoms = ds["identifier"][0,mask]
 
     atomCluster = np.vstack((vals, atoms)).T
     df = pd.DataFrame(atomCluster, columns=["clusterID", "atomID"])
 
     Clusters = df["clusterID"]
     Clusters = Clusters.astype(int)
+
     sizeClusters = np.arange(0, 0)
+
     for i in Clusters:
         sizeClusters = np.append(sizeClusters, len(df[df["clusterID"] == i]))
     df = df.assign(clusterSize=sizeClusters)
@@ -49,13 +51,8 @@ def shapeMetrics(fn) -> pd.DataFrame:
     df["clusterID"] = df["clusterID"].astype(int)
     df["atomID"] = df["atomID"].astype(int)
 
-    # Step 3) Appending Atomic Coordinates and COM to Data Structure
-    atomID = df["atomID"]
-    coords = np.zeros((len(df["atomID"]), 3))
-    index = 0
-    for i in atomID:  # getting the atomic coordinates
-        coords[index] = ds["coordinates"][0][i]
-        index += 1
+    coords = ds["coordinates"][0][mask]
+
     df = df.assign(
         atomCoordx=coords[:, 0], atomCoordy=coords[:, 1], atomCoordz=coords[:, 2]
     )
