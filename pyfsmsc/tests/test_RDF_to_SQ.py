@@ -22,9 +22,9 @@ def test_RDF_to_SQ():
     -------
     None
     """
-    data = pd.read_csv("examples/GEM_Gr.csv", header=None)
+    data = pd.read_csv("examples/colloids/colloidGR", header=None)
 
-    control = pd.read_csv("examples/LikosSq.csv")
+    control = pd.read_csv("examples/colloids/colloidSQref")
     qCont = control.iloc[:, 0].dropna().to_numpy()
     SqCont = control.iloc[:, 1].dropna().to_numpy()
 
@@ -37,8 +37,6 @@ def test_RDF_to_SQ():
     nqs = 1000
 
     q, Sq = RDF_to_SQ(r, gr, density, qmin, qmax, nqs)
-
-    control = pd.read_csv("examples/LikosSq.csv")
 
     f = interp.interp1d(qCont, SqCont, fill_value="extrapolate")
     new_y1 = f(q)

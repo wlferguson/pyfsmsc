@@ -22,7 +22,7 @@ def test_SQ_to_RDF():
     -------
     None
     """
-    dataSq = pd.read_csv("examples/TestSq2.csv")
+    dataSq = pd.read_csv("examples/colloids/colloidSQ")
 
     q = dataSq.iloc[:, 1]
     Sq = dataSq.iloc[:, 0]
@@ -34,7 +34,7 @@ def test_SQ_to_RDF():
     rmax = 5
     nrs = 1000
 
-    data = pd.read_csv("examples/GEM_Gr.csv", header=None)
+    data = pd.read_csv("examples/colloids/colloidGRref", header=None)
     rCont = data.iloc[:, 0]
     grCont = data.iloc[:, 1]
 

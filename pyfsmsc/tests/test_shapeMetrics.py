@@ -22,10 +22,10 @@ def test_shapeMetrics():
     -------
     None
     """
-    fn = "examples/ionomer"
+    fn = "examples/ionomers/ionomerNC"
 
     microstructures = shapeMetrics(fn)
-    OVITOControl = pd.read_csv("examples/OVITOCluster.csv", header=None)
+    OVITOControl = pd.read_csv("examples/ionomers/microstructureControl", header=None)
 
     # Determine if both these techniques find the same number of microstructures.
     assert microstructures.shape[0] == OVITOControl.shape[0]

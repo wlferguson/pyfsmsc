@@ -19,10 +19,9 @@ def test_loadNCAtoms():
     -------
     None
     """
-    fn = "examples/ionomer"
 
     frame = -1
-    fn = "examples/ionomer"
+    fn = "examples/ionomers/ionomerNC"
 
     loaded = loadNCAtoms(fn, frame)
     ds = nc.Dataset(fn)
