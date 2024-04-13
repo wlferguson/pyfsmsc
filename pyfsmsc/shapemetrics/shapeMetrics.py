@@ -32,9 +32,9 @@ def shapeMetrics(fn) -> pd.DataFrame:
 
     # Step 2) Generating Data Structure with Cluster ID and Atomic Coordinates
 
-    mask = ds["c_clst"][0,:] != 0
-    vals = ds["c_clst"][0,mask]
-    atoms = ds["identifier"][0,mask]
+    mask = ds["c_clst"][0, :] != 0
+    vals = ds["c_clst"][0, mask]
+    atoms = ds["identifier"][0, mask]
 
     atomCluster = np.vstack((vals, atoms)).T
     df = pd.DataFrame(atomCluster, columns=["clusterID", "atomID"])

@@ -1,0 +1,23 @@
+repos:
+  -  repo: https://github.com/psf/black
+     rev: 23.3.0
+     hooks:
+     - id: black
+
+  -  repo: https://github.com/pre-commit/pre-commit-hooks
+     rev: v2.0.0
+     hooks:
+     - id: flake8
+       exclude: 'pyfsmsc/.ipynb_checkpoints/.*|pyfsmsc/build.*|pyfsmsc.egg-info'
+       args: ['--ignore=F401,E501,W503']
+        
+  - repo: local
+    hooks:
+    - id: pytest-check
+      name: pytest-check
+      stages: [commit]
+      types: [python]
+      entry: pytest
+      language: system
+      pass_filenames: false
+      always_run: true
