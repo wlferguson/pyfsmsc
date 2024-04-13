@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 
 def test_SQ_to_RDF():
-    """Test conversion of real space structural information into reciprocal space data.
+    """Test conversion of reciprocal space structural information into real space data.
 
     Parameters
     ----------

@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 
 def test_shapeMetrics():
-    """Test if shape metrics match OVITO control.
+    """Test if discovered microstructures and shapes match reference data.
 
     Parameters
     ----------

@@ -9,7 +9,7 @@ import pandas as pd
 
 
 def test_loadNCAtoms():
-    """Test if the copy process is correct.
+    """Test if conversion of .nc to pd.Dataframe is correct.
 
     Parameters
     ----------
@@ -19,7 +19,6 @@ def test_loadNCAtoms():
     -------
     None
     """
-
     frame = -1
     fn = "examples/ionomers/ionomerNC"
 

@@ -14,7 +14,7 @@ warnings.filterwarnings("ignore")
 
 
 def test_Coords_to_SQ():
-    """Test if coords to SQ works.
+    """Test conversion of coordinates to reciprocal space structure, S(q).
 
     Parameters
     ----------
