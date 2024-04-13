@@ -2,7 +2,7 @@
 ![Alt text](https://github.com/wlferguson/pyfsmsc/blob/master/logo.png?raw=true "Title")
 
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)   [![HitCount](https://hits.dwyl.com/wlferguson/pyfsmsc.svg?style=flat-square&show=unique)](http://hits.dwyl.com/wlferguson/pyfsmsc) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![Coverage Status](./reports/coverage/coverage-badge.svg?dummy=8484744)](./reports/coverage/index.html) [![Flake8 Status](./reports/flake8/flake8-badge.svg?dummy=8484744)](./reports/flake8/index.html)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)   [![HitCount](https://hits.dwyl.com/wlferguson/pyfsmsc.svg?style=flat-square&show=unique)](http://hits.dwyl.com/wlferguson/pyfsmsc) [![Coverage Status](./reports/coverage/coverage-badge.svg?dummy=8484744)](./reports/coverage/index.html) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)  [![Flake8 Status](./reports/flake8/flake8-badge.svg?dummy=8484744)](./reports/flake8/index.html)
 
 
 
