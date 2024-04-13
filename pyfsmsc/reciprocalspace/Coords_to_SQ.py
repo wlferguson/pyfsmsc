@@ -4,6 +4,9 @@ import numpy as np
 from numba import jit
 import pandas as pd
 from scipy.signal import savgol_filter
+import warnings
+
+warnings.filterwarnings("ignore")
 
 
 def Coords_to_SQ(nmax, L, df) -> tuple:
