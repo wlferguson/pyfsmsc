@@ -8,7 +8,7 @@ import pandas as pd
 from numpy import linalg as LA
 
 
-def findMicrostructures(fn) -> tuple:
+def findMicrostructures(fn):
     """Finds phase separated microstructures in a netCDF4 file.
 
     Parameters
@@ -54,7 +54,7 @@ def findMicrostructures(fn) -> tuple:
     xcmv = ycmv = zcmv = np.arange(0, 0)
 
     clusterID = df["clusterID"]
-    for item in clusterID:  # computing the COM
+    for item in clusterID:
         ID = item
         xcm = sum(df[df["clusterID"] == ID]["atomCoordx"] * m) / len(
             df[df["clusterID"] == ID]
@@ -73,7 +73,7 @@ def findMicrostructures(fn) -> tuple:
     return df, clusterID
 
 
-def computeGyTensor(df, clusterID) -> pd.DataFrame:
+def computeGyTensor(df, clusterID):
     """Construct gyration tensor and find eigenvalues.
 
     Parameters
@@ -164,7 +164,7 @@ def computeGyTensor(df, clusterID) -> pd.DataFrame:
     return df
 
 
-def computeShapeMetrics(df) -> pd.DataFrame:
+def computeShapeMetrics(df):
     """Compute shape metrics from gyration tensor and eigenvalues.
 
     Parameters
