@@ -1,4 +1,4 @@
-"""Include utilities for calculating scattering information in reciprocal space."""
+"""Include utilities for finding microstructures and calculating their shapes."""
 
 import netCDF4 as nc
 from netCDF4 import Dataset
@@ -8,8 +8,8 @@ import pandas as pd
 from numpy import linalg as LA
 
 
-def shapeMetrics(fn) -> pd.DataFrame:
-    """Convert netcdf4 file into pandas dataframe for ease of manipulation.
+def findMicrostructures(fn) -> tuple:
+    """Finds phase separated microstructures in a netCDF4 file.
 
     Parameters
     ----------
@@ -23,14 +23,7 @@ def shapeMetrics(fn) -> pd.DataFrame:
     df : pdDataframe
         Atomic coordinates and types of atoms.
     """
-    # Step 1) Loading Dependencies and Data
     ds = nc.Dataset(fn)
-
-    # frame = frame
-
-    ds = nc.Dataset(fn)
-
-    # Step 2) Generating Data Structure with Cluster ID and Atomic Coordinates
 
     mask = ds["c_clst"][0, :] != 0
     vals = ds["c_clst"][0, mask]
@@ -77,7 +70,24 @@ def shapeMetrics(fn) -> pd.DataFrame:
         zcmv = np.append(zcmv, zcm)
     df = df.assign(xcm=xcmv, ycm=ycmv, zcm=zcmv)
 
-    # Step 4) Computing the Gyration Tensor and Eigenvalues
+    return df, clusterID
+
+
+def computeGyTensor(df, clusterID) -> pd.DataFrame:
+    """Construct gyration tensor and find eigenvalues.
+
+    Parameters
+    ----------
+    df : pd.Dataframe
+        Dataframe holds the microstructural information from findmicrostructures().
+    clusterID : pd.Dataframe
+        Dataframe holds the names of the microstructures.
+
+    Returns
+    -------
+    df : pdDataframe
+        Dataframe of computed gyration tensor and eigenvalues.
+    """
 
     Rgxx = Rgyy = Rgzz = np.arange(0, 0)
     Rgxy = Rgxz = Rgyz = np.arange(0, 0)
@@ -151,8 +161,22 @@ def shapeMetrics(fn) -> pd.DataFrame:
         rg=Rgv,
     )
 
-    # Step 5) Computing Shape Metrics and Cleaning Up
+    return df
 
+
+def computeShapeMetrics(df) -> pd.DataFrame:
+    """Compute shape metrics from gyration tensor and eigenvalues.
+
+    Parameters
+    ----------
+    df : pd.Dataframe
+        Dataframe holds the microstructural information from computeGyTensor().
+
+    Returns
+    -------
+    df : pdDataframe
+        Dataframe of computed shape metrics.
+    """
     data = df
 
     shapedata = data.iloc[data["clusterID"].drop_duplicates().index][

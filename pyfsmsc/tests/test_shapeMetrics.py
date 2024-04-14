@@ -3,7 +3,9 @@
 import pytest
 import pyfsmsc
 import numpy as np
-from pyfsmsc.shapemetrics.shapeMetrics import shapeMetrics
+from pyfsmsc.shapemetrics.shapeMetrics import findMicrostructures
+from pyfsmsc.shapemetrics.shapeMetrics import computeGyTensor
+from pyfsmsc.shapemetrics.shapeMetrics import computeShapeMetrics
 import scipy.interpolate as interp
 import sklearn
 from sklearn.metrics import r2_score
@@ -24,7 +26,10 @@ def test_shapeMetrics():
     """
     fn = "examples/ionomers/ionomerNC"
 
-    microstructures = shapeMetrics(fn)
+    df, clusterID = findMicrostructures(fn)
+    df = computeGyTensor(df, clusterID)
+    microstructures = computeShapeMetrics(df)
+
     OVITOControl = pd.read_csv("examples/ionomers/microstructureControl", header=None)
 
     # Determine if both these techniques find the same number of microstructures.
