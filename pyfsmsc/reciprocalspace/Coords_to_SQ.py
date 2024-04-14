@@ -32,12 +32,10 @@ def Coords_to_SQ(nmax, L, df):
     ds3 = waveInteractions(ds1, df)
     ds3 = ds3 / df.shape[0]
     qmagVec = np.zeros((nmax**3, 1))
-    # for rows in range(0, nmax**3):
-    #    qmagVec[rows] = (ds1[rows][0] ** 2 + ds1[rows][1] ** 2 + ds1[rows][2] ** 2) ** (
-    #        0.5
-    #    )
-
-    qmagVec = np.linalg.norm(ds1, axis=1)
+    for rows in range(0, nmax**3):
+        qmagVec[rows] = (ds1[rows][0] ** 2 + ds1[rows][1] ** 2 + ds1[rows][2] ** 2) ** (
+            0.5
+        )
 
     return qmagVec, ds3
 

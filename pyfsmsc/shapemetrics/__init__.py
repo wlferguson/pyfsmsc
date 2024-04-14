@@ -3,3 +3,4 @@
 from pyfsmsc.shapemetrics.shapeMetrics import findMicrostructures
 from pyfsmsc.shapemetrics.shapeMetrics import computeGyTensor
 from pyfsmsc.shapemetrics.shapeMetrics import computeShapeMetrics
+from pyfsmsc.shapemetrics.locateFamilies import locateFamilies
