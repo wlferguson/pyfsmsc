@@ -14,6 +14,6 @@ setup(
         "pyfsmsc.realspace",
         "pyfsmsc.shapemetrics",
     ],
-    long_description="""This package
+    long_description="""Package
       includes utilties to characterize the structures of simulated fluids and soft materials.""",
 )
