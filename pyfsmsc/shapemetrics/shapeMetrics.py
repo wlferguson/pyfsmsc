@@ -9,7 +9,7 @@ from numpy import linalg as LA
 
 
 def findMicrostructures(fn):
-    """Finds phase separated microstructures in a netCDF4 file.
+    """Find phase separated microstructures in a netCDF4 file.
 
     Parameters
     ----------
