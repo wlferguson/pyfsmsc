@@ -1,9 +1,7 @@
-"""Include utilities for calculating scattering information in real space."""
+"""Include utilities for converting real space scattering to reciprocal space."""
 
 import numpy as np
-from numba import jit
 import pandas as pd
-from scipy.signal import savgol_filter
 
 
 def RDF_to_SQ(r, gr, density, qmin, qmax, nqs) -> tuple:
@@ -41,4 +39,5 @@ def RDF_to_SQ(r, gr, density, qmin, qmax, nqs) -> tuple:
         for rind, r in enumerate(rs):
             s += dr * r * np.sin(q * r) * RDFs[rind]
             Sqs[qind] = 1 + 4 * np.pi * density * s / q
+
     return qs, Sqs
