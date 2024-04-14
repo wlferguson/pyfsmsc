@@ -1,1 +1,1 @@
-"""Import required libraries for the package."""
+"""Import required libraries for the utility."""
