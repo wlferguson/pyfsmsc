@@ -4,20 +4,20 @@ import numpy as np
 from netCDF4 import Dataset
 
 
-def Coords_to_GR(fn, rCut, nHis, frame) -> tuple:
+def Coords_to_GR(fn, rCut, nHis, frame):
     """Convert coordinates into real space scattering data.
     Code is modified starting from base code created by advisor T.O'C.
 
     Parameters
     ----------
     fn : str
-        1D array containing real space vector magnitudes, r, of `float` type.
+        Path to the netCDF4 simulation trajectory.
     rCut : float
-        1D array containing radial distribution, G(r), of `float` type.
+        Cutoff value for radial distribution (r <= L/2).
     nHis : int
-        Number density of the species with scattering data.
+        Number of histogram bins for the radial distribution.
     frame : int
-        Minimum x-value for the reciprocal space conversion.
+        Frame of the netCDF4 trajectory to compute radial distribution.
 
     Returns
     -------
@@ -52,7 +52,7 @@ def Coords_to_GR(fn, rCut, nHis, frame) -> tuple:
     return re, gAll
 
 
-def neigh_distances(i, X, idx) -> np.ndarray:
+def neigh_distances(i, X, idx):
     """Compute neighbors from a reference particle.
     Code is modified starting from base code created by advisor T.O'C.
 
@@ -63,12 +63,12 @@ def neigh_distances(i, X, idx) -> np.ndarray:
     X : float
         3D coordinates of all the particles in the system.
     idx : int
-        Index of all the particles in the system.
+        Index of all the particles for radial distribution calculation.
 
     Returns
     -------
     dXij : ndarray
-        2D array 3D distances of the reference particle with neighbors, of `float` type.
+        2D array of cartesian differences between reference particle and neighbors, of `float` type.
     """
     xi = X[i]
     Xj = X[idx != i, :]
@@ -76,21 +76,21 @@ def neigh_distances(i, X, idx) -> np.ndarray:
     return dXij
 
 
-def adjust_half_box(dXij, L) -> np.ndarray:
+def adjust_half_box(dXij, L):
     """Adjusts for periodicity of box by correcting particles outside +/- L/2.
     Code is modified starting from base code created by advisor T.O'C.
 
     Parameters
     ----------
     dXij : str
-        2D array 3D distances of the reference particle with neighbors, of `float` type.
-    L : float
-        Length of the box.
+        2D array of cartesian differences between reference particle and neighbors, of `float` type.
+    L : ndarray
+        Vector of lengths of the simulation box.
 
     Returns
     -------
     dXij : ndarray
-        2D array 3D distances of the adjusted reference particle with neighbors, of `float` type.
+        2D array of adjusted cartesian differences between reference particle and neighbors, of `float` type.
     """
     for d in range(3):
         mask = dXij[:, d] > 0.5 * L[d]

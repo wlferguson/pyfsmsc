@@ -1,4 +1,4 @@
-"""Include utilities for calculating scattering information in reciprocal space."""
+"""Include utilities for calculating reciprocal space scattering from coordinates."""
 
 import numpy as np
 from numba import jit
@@ -15,7 +15,7 @@ def Coords_to_SQ(nmax, L, df) -> tuple:
     Parameters
     ----------
     nmax : int
-        Maximum integer index for reciprocal vector scaling.
+        Maximum integer index for reciprocal vectors.
     L : float
         Size of the periodic simulation box.
     df : ndarray
