@@ -1,16 +1,13 @@
-"""Include utilities for calculating structure information."""
+"""Include support utilities for structure calculations."""
 
-import requests
 import numpy as np
-from numba import jit
 import pandas as pd
-from scipy.signal import savgol_filter
 import netCDF4 as nc
 from netCDF4 import Dataset
 
 
 def loadNCAtoms(fn, frame) -> pd.DataFrame:
-    """Convert netcdf4 file into pandas dataframe for ease of manipulation.
+    """Convert netcdf4 file into pandas dataframe.
 
     Parameters
     ----------
@@ -25,8 +22,6 @@ def loadNCAtoms(fn, frame) -> pd.DataFrame:
         Atomic coordinates and types of atoms.
     """
     ds = nc.Dataset(fn)
-
-    frame = frame
 
     ds["coordinates"][frame].shape
 
