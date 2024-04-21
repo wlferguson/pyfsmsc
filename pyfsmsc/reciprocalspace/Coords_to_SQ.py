@@ -4,21 +4,25 @@ import numpy as np
 from numba import jit
 import pandas as pd
 import warnings
+from netCDF4 import Dataset
+import numpy.ma as ma
 
 warnings.filterwarnings("ignore")
 
 
-def Coords_to_SQ(nmax, L, df):
+def Coords_to_SQ(fn, type, nmax, frame):
     """Convert atomic coordinates into scattering data.
 
     Parameters
     ----------
+    fn : str
+        Path to netCDF4 file.
+    type : int
+        Atom type for scattering.
     nmax : int
         Maximum integer index for reciprocal vectors.
-    L : float
-        Size of the periodic simulation box.
-    df : ndarray
-        2D array containing atomic coordinates of simulation in `float` type.
+    frame : int
+        Frame of the netCDF4 trajectory to compute structure factor.
 
     Returns
     -------
@@ -27,6 +31,13 @@ def Coords_to_SQ(nmax, L, df):
     ds3 : ndarray
         1D array containing non-averaged scattering data, S(q), of simulation in `float` type.
     """
+
+    ds = Dataset(fn)
+    X = ds["coordinates"][frame, :]
+    X = X[ds["atom_types"][frame, :] == type]
+    L = ds["cell_lengths"][0]
+
+    df = pd.DataFrame(X).to_numpy()  # convert masked array into normal array for @jit
 
     ds1 = generateWaves(nmax, L)
     ds3 = waveInteractions(ds1, df)
@@ -55,7 +66,6 @@ def generateWaves(nmax, L):
     ds1 : ndarray
         1D array containing allowable scattering vectors for system geometry.
     """
-
     nk = nmax
     ds1 = np.zeros(((nk) ** 3, 3))
     index = 0
@@ -67,7 +77,9 @@ def generateWaves(nmax, L):
                 ds1[index][1] = ny
                 ds1[index][2] = nz
                 index += 1
-    ds1 = 2 * np.pi / L * ds1
+    ds1 = 2 * np.pi * ds1 / L
+
+    ds1 = ma.getdata(ds1)  # convert masked array into normal array for @jit
 
     return ds1
 

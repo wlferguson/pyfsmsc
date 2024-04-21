@@ -24,10 +24,9 @@ def test_Coords_to_SQ():
     -------
     None
     """
-    fn = "examples/ionomers/ionomerCSV"
-    data = pd.read_csv(fn, header=None)
+    fn = "examples/ionomers/ionomerNC"
 
-    q, Sq = Coords_to_SQ(30, 55, data[data[3] == 2].iloc[:, 0:3].to_numpy())
+    q, Sq = Coords_to_SQ(fn, type=2, nmax=15, frame=0)
 
     plt.scatter(q[1:], Sq[1:], s=1, alpha=0.2)
     b = np.concatenate((q, Sq), axis=1)
@@ -38,7 +37,7 @@ def test_Coords_to_SQ():
     plt.plot(b[1:-1, 0], fltSq, color="orange")
     plt.ylim(0, 25)
 
-    fn = "examples/ionomers/ionomerSQref"
+    fn = "examples/ionomers/IonomerCoordsSQref"
     data = pd.read_csv(fn, header=None, delimiter=" ")
 
     assert np.max(b - data.to_numpy()) < 10 ** (-3)
