@@ -10,7 +10,7 @@
 
 ### Welcome to a python based fluids and soft materials characterization package, pyfsmsc!
 
-This package includes fundamental and custom characterization techniques to analyze assembled structures of fluids and soft materials from molecular dynamics (MD) simulations. 
+This package includes fundamental and custom characterization techniques to analyze assembled structures of fluids and soft materials from atomic simulations. 
 
 # Installation 
 
