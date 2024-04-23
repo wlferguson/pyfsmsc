@@ -34,4 +34,8 @@ def loadNCAtoms(fn, frame) -> pd.DataFrame:
 
     df = pd.DataFrame(posType)
 
+    headers = ["x", "y", "z", "type"]
+    df.columns = headers
+    df["type"] = df["type"].astype(int)
+
     return df
