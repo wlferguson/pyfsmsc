@@ -19,7 +19,7 @@ def RDF_to_SQ(r, gr, density, qmin, qmax, nqs):
         Minimum x-value for the reciprocal space conversion.
     qmax : float
         Maximum x-value for the reciprocal space conversion.
-    qmax : int
+    nqs : int
         Number of points to map real space to reciprocal space.
 
     Returns

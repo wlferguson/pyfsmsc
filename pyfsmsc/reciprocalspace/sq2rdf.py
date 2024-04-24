@@ -22,7 +22,7 @@ def SQ_to_RDF(q, sq, density, rmin, rmax, nrs):
         Minimum x-value for the real space conversion.
     rmax : float
         Maximum x-value for the real space conversion.
-    rmax : int
+    nrs : int
         Number of points to map recriprocal space to real space.
 
     Returns

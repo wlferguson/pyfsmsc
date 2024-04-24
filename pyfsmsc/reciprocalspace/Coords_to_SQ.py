@@ -63,7 +63,7 @@ def generateWaves(nmax, L):
     Returns
     -------
     ds1 : ndarray
-        1D array containing allowable scattering vectors for system geometry.
+        2D array containing allowable scattering vectors for system geometry.
     """
     nk = nmax
     ds1 = np.zeros(((nk) ** 3, 3))  # create data structure to write to
