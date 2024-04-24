@@ -33,7 +33,7 @@ def test_Coords_to_GR():
     rCut = 5
     nHis = 80
     frame = 0
-    
+
     # calculate RDF for several frames for time averaging
     re1, gAll1 = Coords_to_GR(fn, rCut, nHis, frame)  # call function
     frame = 1
@@ -55,7 +55,7 @@ def test_Coords_to_GR():
     data = pd.read_csv("examples/colloids/colloidGRref", header=None)
     rCont = data.iloc[:, 0]
     grCont = data.iloc[:, 1]
-    
+
     # interpolate for shared values
     f = interp.interp1d(rCont, grCont, fill_value="extrapolate")
     new_y1 = f(re)

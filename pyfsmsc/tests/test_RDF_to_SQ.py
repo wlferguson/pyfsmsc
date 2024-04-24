@@ -24,7 +24,9 @@ def test_RDF_to_SQ():
     """
     data = pd.read_csv("examples/colloids/colloidGR", header=None)  # read data
 
-    control = pd.read_csv("examples/colloids/colloidSQref")  # read control / compare data
+    control = pd.read_csv(
+        "examples/colloids/colloidSQref"
+    )  # read control / compare data
     qCont = control.iloc[:, 0].dropna().to_numpy()
     SqCont = control.iloc[:, 1].dropna().to_numpy()
 
@@ -39,7 +41,9 @@ def test_RDF_to_SQ():
 
     q, Sq = RDF_to_SQ(r, gr, density, qmin, qmax, nqs)  # call the function
 
-    f = interp.interp1d(qCont, SqCont, fill_value="extrapolate")  # interpolate for shared values
+    f = interp.interp1d(
+        qCont, SqCont, fill_value="extrapolate"
+    )  # interpolate for shared values
     new_y1 = f(q)
 
     plt.plot(q, new_y1, linewidth=3, color="black")
@@ -54,7 +58,9 @@ def test_RDF_to_SQ():
         markevery=50,
     )
 
-    R2 = sklearn.metrics.r2_score(new_y1, Sq)  # calculate score between control and calculated data
+    R2 = sklearn.metrics.r2_score(
+        new_y1, Sq
+    )  # calculate score between control and calculated data
 
     plt.legend(["Control", "Utility"])
     plt.text(0.8, 0.825, r"$R^{2} =$" + str(round(R2, 3)))

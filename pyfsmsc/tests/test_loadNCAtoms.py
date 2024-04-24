@@ -25,11 +25,17 @@ def test_loadNCAtoms():
     loaded = loadNCAtoms(fn, frame)  # call the function
     ds = nc.Dataset(fn)
 
-    indexCheck = np.random.randint(0, ds["coordinates"][frame].shape[0], 10)  # pick random atoms to compare to netCDF4 data
+    indexCheck = np.random.randint(
+        0, ds["coordinates"][frame].shape[0], 10
+    )  # pick random atoms to compare to netCDF4 data
 
     assert np.array_equal(
-        ds["coordinates"][frame, indexCheck], loaded.iloc[indexCheck, 0:3].to_numpy()  # compare if coordinate copy process works
+        ds["coordinates"][frame, indexCheck],
+        loaded.iloc[
+            indexCheck, 0:3
+        ].to_numpy(),  # compare if coordinate copy process works
     )
     assert np.array_equal(
-        ds["atom_types"][frame, indexCheck], loaded.iloc[indexCheck, 3].to_numpy()  # compare if atom copy is correct
+        ds["atom_types"][frame, indexCheck],
+        loaded.iloc[indexCheck, 3].to_numpy(),  # compare if atom copy is correct
     )

@@ -36,10 +36,14 @@ def locateFamilies(inp):
         ]
     ].values
 
-    scaled_cluster_data = StandardScaler().fit_transform(cluster_data)  # scale data for ML
+    scaled_cluster_data = StandardScaler().fit_transform(
+        cluster_data
+    )  # scale data for ML
     standard_embedding = umap.UMAP(
         n_neighbors=30, min_dist=0.1, n_components=2, random_state=25
-    ).fit_transform(scaled_cluster_data)  # create UMAP embedding
+    ).fit_transform(
+        scaled_cluster_data
+    )  # create UMAP embedding
 
     plt.rcParams["figure.figsize"] = [12, 6]
 

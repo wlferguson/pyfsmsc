@@ -33,7 +33,9 @@ def test_SQ_to_RDF():
     rmax = 5
     nrs = 1000
 
-    data = pd.read_csv("examples/colloids/colloidGRref", header=None)  # reference data to compare to
+    data = pd.read_csv(
+        "examples/colloids/colloidGRref", header=None
+    )  # reference data to compare to
     rCont = data.iloc[:, 0]
     grCont = data.iloc[:, 1]
 
@@ -52,10 +54,14 @@ def test_SQ_to_RDF():
         markevery=50,
     )
 
-    f = interp.interp1d(rCont, grCont, fill_value="extrapolate")  # interpolate to shared values
+    f = interp.interp1d(
+        rCont, grCont, fill_value="extrapolate"
+    )  # interpolate to shared values
     new_y1 = f(r)
 
-    R2 = sklearn.metrics.r2_score(new_y1, Gr)  # calculate score between control and calculated score
+    R2 = sklearn.metrics.r2_score(
+        new_y1, Gr
+    )  # calculate score between control and calculated score
 
     plt.legend(["Control", "Utility"])
     plt.text(4, 1.03, r"$R^{2} =$" + str(round(R2, 3)))

@@ -22,9 +22,15 @@ def test_locateFamilies():
     -------
     None
     """
-    simulation1 = pd.read_csv("examples/ionomers/shapes/microstructure1.csv")  # read microstructure data
-    simulation2 = pd.read_csv("examples/ionomers/shapes/microstructure2.csv")  # read microstructure data
-    simulation3 = pd.read_csv("examples/ionomers/shapes/microstructure3.csv")  # read microstructure data
+    simulation1 = pd.read_csv(
+        "examples/ionomers/shapes/microstructure1.csv"
+    )  # read microstructure data
+    simulation2 = pd.read_csv(
+        "examples/ionomers/shapes/microstructure2.csv"
+    )  # read microstructure data
+    simulation3 = pd.read_csv(
+        "examples/ionomers/shapes/microstructure3.csv"
+    )  # read microstructure data
 
     totds = pd.concat([simulation3, simulation2, simulation1])  # combine data structure
     inp = totds[
@@ -51,4 +57,6 @@ def test_locateFamilies():
         ]
     ]
 
-    assert locateFamilies(inp) == 3  # see if unsupervised technique finds 3 microstructural families
+    assert (
+        locateFamilies(inp) == 3
+    )  # see if unsupervised technique finds 3 microstructural families

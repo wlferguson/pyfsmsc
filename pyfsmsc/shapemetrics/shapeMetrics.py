@@ -30,15 +30,19 @@ def findMicrostructures(fn):
     atoms = ds["identifier"][0, mask]  # grab id's of atoms in cluster
 
     atomCluster = np.vstack((vals, atoms)).T
-    df = pd.DataFrame(atomCluster, columns=["clusterID", "atomID"])  # create data structure
+    df = pd.DataFrame(
+        atomCluster, columns=["clusterID", "atomID"]
+    )  # create data structure
 
     Clusters = df["clusterID"]
-    Clusters = Clusters.astype(int)  # change data type 
+    Clusters = Clusters.astype(int)  # change data type
 
     sizeClusters = np.arange(0, 0)
 
     for i in Clusters:
-        sizeClusters = np.append(sizeClusters, len(df[df["clusterID"] == i]))  # calculate size of clusters
+        sizeClusters = np.append(
+            sizeClusters, len(df[df["clusterID"] == i])
+        )  # calculate size of clusters
     df = df.assign(clusterSize=sizeClusters)
 
     df["clusterID"] = df["clusterID"].astype(int)
@@ -132,7 +136,9 @@ def computeGyTensor(df, clusterID):
         tensor = np.array([rgxx, rgxy, rgxz, rgxy, rgyy, rgyz, rgxz, rgyz, rgzz])
         tensor = tensor.reshape(3, 3)
 
-        eigenvalues, eigenvectors = LA.eig(tensor)  # calculate eigenvalues of gyration tensor
+        eigenvalues, eigenvectors = LA.eig(
+            tensor
+        )  # calculate eigenvalues of gyration tensor
         Rg = sum(eigenvalues) ** (0.5)
         Rgxx = np.append(Rgxx, rgxx)
         Rgyy = np.append(Rgyy, rgyy)
@@ -141,7 +147,9 @@ def computeGyTensor(df, clusterID):
         Rgxz = np.append(Rgxz, rgxz)
         Rgyz = np.append(Rgyz, rgyz)
 
-        eigenvalues = np.sort(eigenvalues)  # order eigenvalues to standardize orrientation of microstructure
+        eigenvalues = np.sort(
+            eigenvalues
+        )  # order eigenvalues to standardize orrientation of microstructure
         L1 = np.append(L1, eigenvalues[0])
         L2 = np.append(L2, eigenvalues[1])
         L3 = np.append(L3, eigenvalues[2])
@@ -206,7 +214,9 @@ def computeShapeMetrics(df):
 
     b2 = eig3 - 0.5 * (eig1 + eig2)  # calculate asphericity
     c2 = eig2 - eig1  # calculate acylindricity
-    k2 = (b2**2 + 0.75 * c2**2) / (eig1 + eig2 + eig3) ** 2  # calculate aspect ratio
+    k2 = (b2**2 + 0.75 * c2**2) / (
+        eig1 + eig2 + eig3
+    ) ** 2  # calculate aspect ratio
     aspect = np.sqrt(eig3 / eig1)  # calculate aspect ratio
 
     shapedata = shapedata.assign(
