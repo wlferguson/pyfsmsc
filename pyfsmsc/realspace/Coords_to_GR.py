@@ -56,12 +56,12 @@ def neigh_distances(i, X, idx):
 
     Parameters
     ----------
-    i : str
+    i : int
         Index of reference particle.
-    X : float
-        3D coordinates of all the particles in the system.
-    idx : int
-        Index of all the particles for radial distribution calculation.
+    X : ndarray
+        2D array of coordinates of all the particles in the system of `float` type.
+    idx : ndarray
+        1D array containing index of all the particles for radial distribution calculation of `int` type.
 
     Returns
     -------
@@ -82,7 +82,7 @@ def adjust_half_box(dXij, L):
     dXij : ndarray
         2D array of cartesian differences between reference particle and neighbors, of `float` type.
     L : ndarray
-        Vector of lengths of the simulation box.
+        Array of lengths of the simulation box of `float type`.
 
     Returns
     -------

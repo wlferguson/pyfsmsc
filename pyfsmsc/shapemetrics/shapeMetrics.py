@@ -15,8 +15,6 @@ def findMicrostructures(fn):
     ----------
     fn : str
         The path is the netCDF4 trajectory.
-    frame : int
-        The frame in the netCDF4 trajectory being accessed.
 
     Returns
     -------

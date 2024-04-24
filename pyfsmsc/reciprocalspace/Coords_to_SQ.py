@@ -42,7 +42,7 @@ def Coords_to_SQ(fn, type, nmax, frame):
     ds3 = waveInteractions(ds1, df)
     ds3 = ds3 / df.shape[0]
     qmagVec = np.zeros((nmax**3, 1))
-    for rows in range(0, nmax**3):
+    for rows in range(0, nmax**3):  # magnitude of reciprocal space vector
         qmagVec[rows] = (ds1[rows][0] ** 2 + ds1[rows][1] ** 2 + ds1[rows][2] ** 2) ** (
             0.5
         )
@@ -57,8 +57,8 @@ def generateWaves(nmax, L):
     ----------
     nmax : int
         Maximum integer index for reciprocal vector scaling.
-    L : float
-        Size of the periodic simulation box.
+    L : ndarray
+        Array of simulation box lengths of `float` type.
 
     Returns
     -------

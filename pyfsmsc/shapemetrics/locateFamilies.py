@@ -20,8 +20,8 @@ def locateFamilies(inp):
 
     Returns
     -------
-    re : ndarray
-        1D array containing real space radial vectors, r, of `float` type.
+    clusters[np.argmax(silhouettelist)] : int
+        Number of microstructural families discovered with K-Means.
     """
     plt.rcParams["figure.figsize"] = [6, 6]
 
