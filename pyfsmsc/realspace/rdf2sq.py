@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 
-def RDF_to_SQ(r, gr, density, qmin, qmax, nqs) -> tuple:
+def RDF_to_SQ(r, gr, density, qmin, qmax, nqs):
     """Convert real space scattering data into reciprocal space scattering data.
 
     Parameters

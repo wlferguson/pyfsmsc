@@ -7,8 +7,6 @@ from netCDF4 import Dataset
 def Coords_to_GR(fn, rCut, nHis, frame):
     """Convert coordinates into real space scattering data.
 
-    Code is modified starting from base code created by advisor T.O'C.
-
     Parameters
     ----------
     fn : str
@@ -56,8 +54,6 @@ def Coords_to_GR(fn, rCut, nHis, frame):
 def neigh_distances(i, X, idx):
     """Compute neighbors from a reference particle.
 
-    Code is modified starting from base code created by advisor T.O'C.
-
     Parameters
     ----------
     i : str
@@ -80,8 +76,6 @@ def neigh_distances(i, X, idx):
 
 def adjust_half_box(dXij, L):
     """Adjust for periodicity of box by correcting particles outside +/- L/2.
-
-    Code is modified starting from base code created by advisor T.O'C.
 
     Parameters
     ----------

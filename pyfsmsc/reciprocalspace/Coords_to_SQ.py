@@ -31,7 +31,6 @@ def Coords_to_SQ(fn, type, nmax, frame):
     ds3 : ndarray
         1D array containing non-averaged scattering data, S(q), of simulation in `float` type.
     """
-
     ds = Dataset(fn)
     X = ds["coordinates"][frame, :]
     X = X[ds["atom_types"][frame, :] == type]

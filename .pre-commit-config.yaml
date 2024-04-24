@@ -9,7 +9,7 @@ repos:
      hooks:
      - id: flake8
        exclude: 'pyfsmsc/.ipynb_checkpoints/.*|pyfsmsc/build.*|pyfsmsc.egg-info'
-       args: ['--ignore=F401,E501,W503']
+       args: ['--ignore=F401,E501,D202']
         
   - repo: local
     hooks:

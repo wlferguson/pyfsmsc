@@ -88,7 +88,6 @@ def computeGyTensor(df, clusterID):
     df : pdDataframe
         Dataframe of computed gyration tensor and eigenvalues.
     """
-
     Rgxx = Rgyy = Rgzz = np.arange(0, 0)
     Rgxy = Rgxz = Rgyz = np.arange(0, 0)
     L1 = L2 = L3 = np.arange(0, 0)

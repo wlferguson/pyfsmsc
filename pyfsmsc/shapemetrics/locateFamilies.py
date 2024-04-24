@@ -23,7 +23,6 @@ def locateFamilies(inp):
     re : ndarray
         1D array containing real space radial vectors, r, of `float` type.
     """
-
     plt.rcParams["figure.figsize"] = [6, 6]
 
     cluster_data = inp[

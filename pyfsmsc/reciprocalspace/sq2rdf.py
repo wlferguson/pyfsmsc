@@ -7,7 +7,7 @@ import pandas as pd
 from scipy.signal import savgol_filter
 
 
-def SQ_to_RDF(q, sq, density, rmin, rmax, nrs) -> tuple:
+def SQ_to_RDF(q, sq, density, rmin, rmax, nrs):
     """Convert recriprocal space scattering data into real space radial distribution data.
 
     Parameters

@@ -6,7 +6,7 @@ import netCDF4 as nc
 from netCDF4 import Dataset
 
 
-def loadNCAtoms(fn, frame) -> pd.DataFrame:
+def loadNCAtoms(fn, frame):
     """Convert netcdf4 file into pandas dataframe.
 
     Parameters
