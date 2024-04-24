@@ -26,11 +26,11 @@ def test_shapeMetrics():
     """
     fn = "examples/ionomers/ionomerNC"
 
-    df, clusterID = findMicrostructures(fn)
-    df = computeGyTensor(df, clusterID)
-    microstructures = computeShapeMetrics(df)
+    df, clusterID = findMicrostructures(fn)  # calculate microstructures
+    df = computeGyTensor(df, clusterID)  # calculate gyration tensor
+    microstructures = computeShapeMetrics(df)  # calculate shape metrics
 
-    OVITOControl = pd.read_csv("examples/ionomers/microstructureControl", header=None)
+    OVITOControl = pd.read_csv("examples/ionomers/microstructureControl", header=None)  # read control data to reference
 
     # Determine if both these techniques find the same number of microstructures.
     assert microstructures.shape[0] == OVITOControl.shape[0]

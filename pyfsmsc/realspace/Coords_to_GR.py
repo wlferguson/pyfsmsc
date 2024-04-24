@@ -25,14 +25,14 @@ def Coords_to_GR(fn, rCut, nHis, frame):
     gAll : ndarray
         1D array containing radial distribution function, G(r), of `float` type.
     """
-    ds = Dataset(fn)
-    X = ds["coordinates"][frame, :]
-    X = X[ds["atom_types"][frame, :] == 1]
-    L = ds["cell_lengths"][0]
+    ds = Dataset(fn)  # read netCDF4
+    X = ds["coordinates"][frame, :]  # grab coordinates
+    X = X[ds["atom_types"][frame, :] == 1]  # set type at 1
+    L = ds["cell_lengths"][0]  # length of cells
 
-    Npart = X.shape[0]
+    Npart = X.shape[0]  # number of particles
 
-    gAll = np.zeros(nHis)
+    gAll = np.zeros(nHis)  # data structure to write to
     idx = np.arange(Npart, dtype=int)
 
     for i in range(Npart):
@@ -44,9 +44,9 @@ def Coords_to_GR(fn, rCut, nHis, frame):
         gAll += gi
     gAll = gAll / Npart
 
-    Vb = 4 / 3 * np.pi * (re[1:] ** 3 - re[:-1] ** 3)
-    nid = Npart / (L[0] * L[1] * L[2])
-    gAll = gAll / (Vb * nid)
+    Vb = 4 / 3 * np.pi * (re[1:] ** 3 - re[:-1] ** 3)  # shell volume
+    nid = Npart / (L[0] * L[1] * L[2])  # neighbors
+    gAll = gAll / (Vb * nid)  # normalize radial distribution
 
     return re, gAll
 
@@ -68,9 +68,9 @@ def neigh_distances(i, X, idx):
     dXij : ndarray
         2D array of cartesian differences between reference particle and neighbors, of `float` type.
     """
-    xi = X[i]
-    Xj = X[idx != i, :]
-    dXij = Xj - xi
+    xi = X[i]  # reference particle
+    Xj = X[idx != i, :]  # other particles
+    dXij = Xj - xi  # get distances
     return dXij
 
 
@@ -79,7 +79,7 @@ def adjust_half_box(dXij, L):
 
     Parameters
     ----------
-    dXij : str
+    dXij : ndarray
         2D array of cartesian differences between reference particle and neighbors, of `float` type.
     L : ndarray
         Vector of lengths of the simulation box.
@@ -89,7 +89,7 @@ def adjust_half_box(dXij, L):
     dXij : ndarray
         2D array of adjusted cartesian differences between reference particle and neighbors, of `float` type.
     """
-    for d in range(3):
+    for d in range(3):  # adjust for periodic cells
         mask = dXij[:, d] > 0.5 * L[d]
         dXij[mask, d] -= L[d]
         mask = dXij[:, d] <= -0.5 * L[d]

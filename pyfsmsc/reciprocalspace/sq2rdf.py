@@ -33,11 +33,11 @@ def SQ_to_RDF(q, sq, density, rmin, rmax, nrs):
         1D array containing radial distribution values, G(r), of `float` type.
     """
     qs = q
-    dq = q[1] - q[0]
-    SQs = sq - 1
+    dq = q[1] - q[0]  # get integration spacing
+    SQs = sq - 1  # adjust structure factor
     rs = np.linspace(rmin, rmax, num=nrs)
     Grs = np.zeros(rs.shape[0])
-    for rind, r in enumerate(rs):
+    for rind, r in enumerate(rs):  # integrate
         g = 0
         for qind, q in enumerate(qs):
             g += dq * q * np.sin(q * r) * SQs[qind]

@@ -30,11 +30,11 @@ def RDF_to_SQ(r, gr, density, qmin, qmax, nqs):
         1D array containing reciprocal distribution values, S(q), of `float` type.
     """
     rs = r
-    dr = r[1] - r[0]
-    RDFs = gr - 1
+    dr = r[1] - r[0]  # calculate dr for integral
+    RDFs = gr - 1  # adjust rdf
     qs = np.linspace(qmin, qmax, num=nqs)
     Sqs = np.zeros(qs.shape[0])
-    for qind, q in enumerate(qs):
+    for qind, q in enumerate(qs):  # integrate
         s = 0
         for rind, r in enumerate(rs):
             s += dr * r * np.sin(q * r) * RDFs[rind]

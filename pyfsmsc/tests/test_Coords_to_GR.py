@@ -28,12 +28,14 @@ def test_Coords_to_GR():
     None
     """
 
-    fn = "examples/colloids/colloidNC"
+    fn = "examples/colloids/colloidNC"  # read netCDF4 data
 
     rCut = 5
     nHis = 80
     frame = 0
-    re1, gAll1 = Coords_to_GR(fn, rCut, nHis, frame)
+    
+    # calculate RDF for several frames for time averaging
+    re1, gAll1 = Coords_to_GR(fn, rCut, nHis, frame)  # call function
     frame = 1
     re2, gAll2 = Coords_to_GR(fn, rCut, nHis, frame)
     frame = 2
@@ -45,16 +47,20 @@ def test_Coords_to_GR():
     frame = 5
     re6, gAll6 = Coords_to_GR(fn, rCut, nHis, frame)
 
+    # time average the data
     re = (re1[1:] + re2[1:] + re3[1:] + re4[1:] + re5[1:] + re6[1:]) / 6
     gAll = (gAll1 + gAll2 + gAll3 + gAll4 + gAll5 + gAll6) / 6
 
+    # load in reference data from OVITO control
     data = pd.read_csv("examples/colloids/colloidGRref", header=None)
     rCont = data.iloc[:, 0]
     grCont = data.iloc[:, 1]
-
+    
+    # interpolate for shared values
     f = interp.interp1d(rCont, grCont, fill_value="extrapolate")
     new_y1 = f(re)
 
+    # determine if the difference between method and control is in passing threshold
     R2 = sklearn.metrics.r2_score(new_y1, gAll)
 
     assert R2 > 0.90

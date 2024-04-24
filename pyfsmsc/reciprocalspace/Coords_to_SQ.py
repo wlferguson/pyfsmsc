@@ -31,10 +31,10 @@ def Coords_to_SQ(fn, type, nmax, frame):
     ds3 : ndarray
         1D array containing non-averaged scattering data, S(q), of simulation in `float` type.
     """
-    ds = Dataset(fn)
-    X = ds["coordinates"][frame, :]
-    X = X[ds["atom_types"][frame, :] == type]
-    L = ds["cell_lengths"][0]
+    ds = Dataset(fn)  # read data
+    X = ds["coordinates"][frame, :]  # grab coordinates
+    X = X[ds["atom_types"][frame, :] == type]  # get atom type
+    L = ds["cell_lengths"][0]  # cell coordinates
 
     df = pd.DataFrame(X).to_numpy()  # convert masked array into normal array for @jit
 
@@ -66,7 +66,7 @@ def generateWaves(nmax, L):
         1D array containing allowable scattering vectors for system geometry.
     """
     nk = nmax
-    ds1 = np.zeros(((nk) ** 3, 3))
+    ds1 = np.zeros(((nk) ** 3, 3))  # create data structure to write to
     index = 0
 
     for nx in range(0, nk):
@@ -76,7 +76,7 @@ def generateWaves(nmax, L):
                 ds1[index][1] = ny
                 ds1[index][2] = nz
                 index += 1
-    ds1 = 2 * np.pi * ds1 / L
+    ds1 = 2 * np.pi * ds1 / L  # q-vectors for scattering
 
     ds1 = ma.getdata(ds1)  # convert masked array into normal array for @jit
 
@@ -99,10 +99,10 @@ def waveInteractions(q, C):
     ds3 : ndarray
         1D array containing non-averaged scattering data, S(q), of simulation in `float` type.
     """
-    ds3 = np.zeros((q.shape[0], 1))
+    ds3 = np.zeros((q.shape[0], 1))  # create data structure to write to
     sumInit1 = 0
     sumInit2 = 0
-    for row in range(0, q.shape[0]):
+    for row in range(0, q.shape[0]):  # calculate the wave sums and averages
         for i in range(0, C.shape[0]):
             sumInit1 = sumInit1 + np.cos(np.dot(q[row], C[i]))
             sumInit2 = sumInit2 + np.sin(np.dot(q[row], C[i]))

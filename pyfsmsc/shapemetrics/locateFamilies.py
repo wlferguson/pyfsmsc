@@ -36,17 +36,17 @@ def locateFamilies(inp):
         ]
     ].values
 
-    scaled_cluster_data = StandardScaler().fit_transform(cluster_data)
+    scaled_cluster_data = StandardScaler().fit_transform(cluster_data)  # scale data for ML
     standard_embedding = umap.UMAP(
         n_neighbors=30, min_dist=0.1, n_components=2, random_state=25
-    ).fit_transform(scaled_cluster_data)
+    ).fit_transform(scaled_cluster_data)  # create UMAP embedding
 
     plt.rcParams["figure.figsize"] = [12, 6]
 
     # We feed in the embedding from the UMAP section
     kmeans_labels = cluster.KMeans(n_clusters=3, max_iter=100).fit_predict(
         standard_embedding
-    )
+    )  # calculate KMeans clustering for a set number of clusters
 
     # plotting
     fig, axs = plt.subplots(1, 2)
@@ -77,10 +77,10 @@ def locateFamilies(inp):
     inertias = []
     silhouettelist = []
 
-    # The data K-Means will work with come from the UMAP Reduction
+    # The data K-Means will work with comes from the UMAP Reduction
     X = standard_embedding
 
-    for k in range(2, 11):
+    for k in range(2, 11):  # hyperparameter tuning for optimal clusters
         kmeanModel = KMeans(n_clusters=k).fit(X)
         kmeanModel2 = KMeans(n_clusters=k)
         kmeanModel2.fit_predict(X)
